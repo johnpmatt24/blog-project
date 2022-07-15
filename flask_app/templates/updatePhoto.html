@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/updatePic.css') }}"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    <title>Document</title>
+</head>
+<body class="p-3 mb-2 bg-light text-dark">
+    <div class ="container">
+        <h1 class="text-center" style="color:royalblue;">UPDATE YOUR PHOTO</h1>
+        <div>
+            {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+                {% if messages %}                            <!-- check if there are any messages -->
+                    {% for message in messages %}            <!-- loop through the messages -->
+                        <p style="color: red;" class="text-center">{{message}}</p>                   <!-- display each message in a paragraph tag -->
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        <div class = "upload-form">
+            <form action="/update/image" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" class ="form-control">
+                <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Update Image</button>
+            </form>
+        </div>
+        <p class="text-center"><a href = "/dashboard">Go to Profile</a></p>
+    </div>
+</body>
+</html>

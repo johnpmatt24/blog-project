@@ -1,0 +1,171 @@
+body {
+    margin: 0;
+}
+
+
+
+#header {
+    background-color: #cbd18f;
+    color: white;
+    padding: 0px 25px 0 25px;
+}
+
+#left {
+    font-size: 25px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 40px;
+    margin-top: 10px;
+    height: 300px;
+}
+
+#post-info {
+    width: 700px;
+}
+
+
+#post-info p {
+    font-size: large;
+}
+
+
+
+#post-info button {
+    font-size: medium;
+    margin-top: -1px;
+    border-radius: 1rem;
+    border: 1px solid darkseagreen;
+    background-color: white;
+}
+
+
+
+#post-info > h2 {
+    text-transform: uppercase;
+}
+
+#all-comments {
+    margin-top: 10px;
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+#profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+
+#post-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-even {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.onePost-header {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-top: 15px;
+}
+
+
+.onePost-header img {
+    height: 100px;
+    border-radius: 50%;
+
+}
+
+
+textarea {
+    font-size: 18px;
+    padding: 5px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.comment {
+    background-color: cornsilk;
+    padding: 15px;
+}
+
+
+.sub-comment {
+    background-color: white;
+    padding: 10px;
+}
+
+
+.green{
+    color: green;
+    font-size: 50px;
+}
+
+.yellow {
+    color: yellow;
+    font-size: 50px;
+}
+
+
+.flex-between a {
+    text-decoration: none;
+    color: red;
+}
+
+.flex-between > .orange a {
+    text-decoration: none;
+    color: orange;
+    margin-right: 10px;
+}
+
+
+ul {
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+}
+
+
+
+li {
+    list-style: none;
+}
+
+
+
+.flex-between > ul a {
+    text-decoration: none;
+    color: white;
+}
+
+button {
+    width: 100px;
+    height: 40px;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+label {
+    font-size: 20px;
+}

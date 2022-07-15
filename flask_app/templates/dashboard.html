@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="header" class="flex-between">
+        <h2><span class = "green">Game</span><span class = "yellow">Space</span></h2>
+        <a href="/network">Network</a>
+        <a href="/logout"><button>Logout</button></a>
+    </div>
+    <div id = "content" class = "flex-even">
+        <div id = "left">
+            <div>
+                <div>
+                    <img src="static/img/{{img.file}}"  id= "profile-image">
+                    <p><a href ="/updatePic">Add a New Photo</a></p>
+                </div>
+                <hr>
+                <p>{{user.first_name}} {{user.last_name}}</p>
+                <hr>
+                <p>Age: {{user.age}}</p>
+                <hr>
+                <P>Email: {{user.email}}</P>
+                <hr>
+                <P>Country: {{user.country}}</P>
+            </div>
+        </div>
+        <div id="middle">
+            <div id = "post">
+                <form action="/create/post" method="post">
+                    <label>
+                        <input type="text" name="title" id="title" placeholder="Game Title">
+                    </label>
+                    <textarea name="content" id="content" cols="75" rows="10" placeholder="Share your thoughts!"></textarea>
+                    <input type="hidden" name="user_id" value="{{user.id}}">
+                    <input type="hidden" name="image_id" value = "{{img.id}}">
+                    <button type="submit" class = "post-btn">Post</button>
+                </form>
+                <div>
+                    {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+                        {% if messages %}                            <!-- check if there are any messages -->
+                            {% for message in messages %}            <!-- loop through the messages -->
+                                <p style="color: red;">{{message}}</p>                   <!-- display each message in a paragraph tag -->
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </div>
+                <div id = "all-posts">
+                    {%for post in allposts%}
+                    <div class = "post-info">
+                        <div class = "sub-post">
+                            <div class = "post-header">
+                                <img src="static/img/{{post.image_name}}">
+                                {%if session.user_id == post.user_id%}
+                                <p>You Posted</p>
+                                {%else%}
+                                <p>
+                                    {{post.creator_first_name}} {{post.creator_last_name}} posted
+                                </p>
+                                {%endif%}
+                            </div>
+                            <h3>{{post.title}}</h3>
+                            <p>{{post.content}}</p>
+                            <div class = "flex-between">
+                                <p>POSTED ON {{post.created_at.strftime('%b %d %Y')}}</p>
+                                <div class = "flex-between gap">
+                                    <form action="/add/like" method="post">
+                                        <input type="hidden" name="user_id" value ={{session.user_id}}>
+                                        <input type="hidden" name="post_id" value = {{post.pid}}>
+                                        <button>Cheer</button>
+                                    </form>
+                                    <p><a href="/view/post/{{post.pid}}">View</a></p>
+                                    {%if session.user_id == post.user_id%}
+                                    <p><a href="/edit/post/{{post.pid}}">Edit</a></p>
+                                    {%endif%}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

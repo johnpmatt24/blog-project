@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/messagePortal.css') }}">
+    <title>Document</title>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+</head>
+<body>
+    <div id="header" class="flex-between">
+        <h2><span class = "green">Game</span><span class = "yellow">Space</span></h2>
+        <ul>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/network">Network</a></li>
+        </ul>
+        <a href="/logout"><button>Logout</button></a>
+    </div>
+    <div id="messagecontent" class = "flex">
+        <div id = "left">
+            <p>{{user.first_name}} {{user.last_name}}'s Page</p>
+            <hr>
+            <P>Age: {{user.age}}</P>
+            <hr>
+            <P>Email: {{user.email}}</P>
+            <hr>
+            <P>Country: {{user.country}}</P>
+        </div>
+        <div id = "my-mess">
+            <div>
+                <h2>Messages</h2>
+            </div>
+            <div id = "users-mess">
+                {%for message in messages%}
+                <div>
+                    {%if session.user_id == message.sender_id%}
+                    <h3>You</h3>
+                    {%else%}
+                    <h3>{{message.sender}}</h3>
+                    {%endif%}
+                    <p>{{message.content}}</p>
+                </div>
+                {%endfor%}
+            </div>
+            <form action="/send/message" method="post">
+                <input type="hidden" name="sender_id" value={{session.user_id}}>
+                <input type="hidden" name="receiver_id" value ={{user.id}}>
+                <textarea name="content"  rows="6" placeholder="Write a message"></textarea>
+                <button type="submit">Message</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
