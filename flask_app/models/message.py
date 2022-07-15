@@ -35,7 +35,7 @@ class Message:
     
     @classmethod
     def get_user_messages(cls, data):
-        query = "SELECT users.first_name as sender, users2.first_name as receiver, messages.* from users LEFT JOIN messages on users.id = messages.sender_id LEFT JOIN users as users2 on users2.id = messages.receiver_id where ( sender_id = %(sender_id)s and receiver_id = %(receiver_id)s ) or (sender_id = %(receiver_id)s and receiver_id = %(sender_id)s );"
+        query = "SELECT users.first_name as sender, users2.first_name as receiver, messages.* from users LEFT JOIN messages on users.id = messages.sender_id LEFT JOIN users as users2 on users2.id = messages.receiver_id where ( sender_id = %(sender_id)s and receiver_id = %(receiver_id)s ) or (sender_id = %(receiver_id)s and receiver_id = %(sender_id)s ) ORDER BY messages.mid asc;"
         # this query gets all the messages between two users. User in session will always be sender and other user will always be the receiver. 
         # So we are getting all messages where 
         # sender and receiver will be the person in session OR the sender and receiver will be the other user
