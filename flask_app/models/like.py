@@ -31,6 +31,15 @@ class Like:
         return likes
     
     
+    @classmethod
+    def get_post_user_like(cls, data):
+        query = "SELECT * from likes where post_id = %(post_id)s and user_id = %(user_id)s;"
+        results = connectToMySQL('paa').query_db(query, data)
+        if len(results) < 1:
+            return False
+        return cls(results[0])
+    
+    
     
     @classmethod
     def add_like(cls, data):
@@ -46,5 +55,5 @@ class Like:
     
     @classmethod
     def delete_post_likes(cls, data):
-        query = "DELETE from likes where post_id = %(post_id)s;"
+        query = "DELETE from likes where post_id = %(post_id)s and user_id = %(user_id)s;"
         return connectToMySQL('paa').query_db(query, data)

@@ -150,7 +150,7 @@ body {
     border: none;
     background-color: white;
     color: rgb(144, 187, 43);
-    width: 60px;
+    width: 35px;
     font-size: 19px;
 
 }
@@ -160,7 +160,7 @@ body {
 
 .flex-between.gap {
     align-items: center;
-    gap: 15px;
+    gap: 10px;
 }
 
 

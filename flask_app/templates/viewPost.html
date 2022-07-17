@@ -10,7 +10,7 @@
 </head>
 <body>
     <div id="header" class="flex-between">
-        <h2><span class = "green">Blog</span><span class = "yellow">Frienzy</span></h2>
+        <h2><span class = "green">Game</span><span class = "yellow">Space</span></h2>
         <ul>
             <li><a href="/dashboard">Dashboard</a></li>
             <li><a href="/network">Network</a></li>
@@ -32,7 +32,7 @@
             <p>{{one_post.content}}</p>
             <div class = "flex-between">
                 <p>POSTED ON {{one_post.created_at.strftime('%b %d %Y')}}</p>
-                <p>{{postlikes | length}} Cheer(s)</p>
+                <p>{{postlikes | length}} like(s)</p>
             </div>
             <form action="/add/comment" method = "post">
                 <input type="hidden" name="post_id" value = {{one_post.pid}}>

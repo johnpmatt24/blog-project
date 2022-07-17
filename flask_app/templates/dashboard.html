@@ -73,11 +73,12 @@
                                     <form action="/add/like" method="post">
                                         <input type="hidden" name="user_id" value ={{session.user_id}}>
                                         <input type="hidden" name="post_id" value = {{post.pid}}>
-                                        <button>Cheer</button>
+                                        <button>like</button>
                                     </form>
-                                    <p><a href="/view/post/{{post.pid}}">View</a></p>
+                                    <p><a href = "/delete/like/{{session.user_id}}/{{post.pid}}">unlike</a></p>
+                                    <p><a href="/view/post/{{post.pid}}">view</a></p>
                                     {%if session.user_id == post.user_id%}
-                                    <p><a href="/edit/post/{{post.pid}}">Edit</a></p>
+                                    <p><a href="/edit/post/{{post.pid}}">edit</a></p>
                                     {%endif%}
                                 </div>
                             </div>

@@ -119,13 +119,33 @@ def user_login():
 def add_like():
     if "user_id" not in session:
         return redirect("/logout")
+    in_database = like.Like.get_post_user_like(request.form)
     
     like_data = {
         "user_id" : request.form["user_id"],
         "post_id" : request.form["post_id"]
     }
-    like.Like.add_like(like_data)
-    return redirect("/dashboard")
+    if not in_database:
+        like.Like.add_like(like_data)
+        return redirect("/dashboard")
+    else:
+        return redirect("/dashboard")
+
+
+@app.route("/delete/like/<int:id>/<int:pid>")
+def delete_like(id, pid):
+    data = {
+        "user_id": id,
+        "post_id": pid
+    }
+    in_database = like.Like.get_post_user_like(data)
+    if in_database:
+        like.Like.delete_like(data)
+        return redirect("/dashboard")
+    else:
+        return redirect("/dashboard")
+
+
 
 
 @app.route("/add/image", methods = ["POST"])
